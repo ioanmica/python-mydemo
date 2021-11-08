@@ -13,3 +13,9 @@ def find_user(username):
         output = cur.fetchone()
     return output
 
+def find_item(itemname):
+    with connection.cursor() as cur:
+        cur.execute(f"""select username from ITEMS where name = '%s'""" % itemname)
+        output = cur.fetchone()
+    return output
+
