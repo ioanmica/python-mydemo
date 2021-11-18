@@ -32,14 +32,14 @@ build {
   provisioner "file" {
     # source is in /workspace
     source = "/workspace"
-    destination = "/tmp"    
+    destination = "/tmp/project"    
   }
 
   # move project to /micamedic
   provisioner "shell" {
     inline = [      
       "mkdir /micamedic",
-      "mv /tmp /micamedic/"
+      "mv /tmp/project /micamedic/"
     ]
   }
   provisioner "shell" {
