@@ -32,15 +32,16 @@ build {
   # copy project cloned in Cloud Build machine to new VM
   provisioner "file" {
     # source is in /workspace
-    source = "python-mydemo"
+    source = "."
     destination = "/tmp"    
   }
 
   # move project to /micamedic
   provisioner "shell" {
-    inline = [      
+    inline = [   
+      "ls -al /tmp",   
       "mkdir /micamedic",
-      "mv /tmp/python-mydemo /micamedic/"
+      "mv /tmp /micamedic/"
     ]
   }
   provisioner "shell" {

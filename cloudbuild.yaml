@@ -14,15 +14,15 @@ steps:
         path: /root/.ssh
 
   # Clone the repository
-  - name: 'gcr.io/cloud-builders/git'
-    args:
-    - clone
-    - --branch 
-    - proba    
-    - git@github.com:ioanmica/python-mydemo
-    volumes:
-    - name: 'ssh'
-      path: /root/.ssh
+  # - name: 'gcr.io/cloud-builders/git'
+  #   args:
+  #   - clone
+  #   - --branch 
+  #   - proba    
+  #   - git@github.com:ioanmica/python-mydemo
+  #   volumes:
+  #   - name: 'ssh'
+  #     path: /root/.ssh
 
   # create VM with packer builder docker image  
   - name: "gcr.io/$PROJECT_ID/packer-builder:1.7.8"
