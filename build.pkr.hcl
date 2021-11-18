@@ -31,7 +31,7 @@ build {
   # copy project cloned in Cloud Build machine to new VM
   provisioner "file" {
     # source is in /workspace
-    source = "*"
+    source = "/workspace"
     destination = "/tmp"    
   }
 
