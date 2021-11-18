@@ -25,7 +25,7 @@ build {
       # and the entire build project files
       "ls -al", 
       "pwd",
-      "ls -al python-mydemo",
+      # "ls -al python-mydemo",
       "ls -al /"
     ]
   }
