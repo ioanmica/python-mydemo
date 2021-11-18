@@ -1,0 +1,39 @@
+steps:
+  # Access the id_github file from Secret Manager, and setup SSH
+  - name: "gcr.io/cloud-builders/git"
+    secretEnv: ["SSH_KEY"]
+    entrypoint: "bash"
+    args:
+      - -c
+      - |
+        echo "$$SSH_KEY" >> /root/.ssh/id_rsa
+        chmod 400 /root/.ssh/id_rsa
+        cp known_hosts.github /root/.ssh/known_hosts
+    volumes:
+      - name: "ssh"
+        path: /root/.ssh
+
+  # Clone the repository
+  - name: 'gcr.io/cloud-builders/git'
+    args:
+    - clone
+    - --branch 
+    - proba    
+    - git@github.com:ioanmica/python-mydemo
+    volumes:
+    - name: 'ssh'
+      path: /root/.ssh
+
+  # create VM with packer builder docker image  
+  - name: "gcr.io/$PROJECT_ID/packer-builder:1.7.8"
+    args:
+      - build
+      - -var-file=variables.pkrvars.hcl
+      - build.pkr.hcl
+
+tags: ["cloud-builders-community"]
+
+availableSecrets:
+  secretManager:
+  - versionName: projects/$PROJECT_ID/secrets/packer-build/versions/latest
+    env: 'SSH_KEY' 
