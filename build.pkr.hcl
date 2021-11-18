@@ -24,22 +24,20 @@ build {
       # this is in /workspace, here we have the git repo folder 
       # and the entire build project files
       "ls -al", 
-      "pwd",
-      # "ls -al python-mydemo",
+      "pwd",      
       "ls -al /"
     ]
   }
   # copy project cloned in Cloud Build machine to new VM
   provisioner "file" {
     # source is in /workspace
-    source = "./*"
+    source = "*"
     destination = "/tmp"    
   }
 
   # move project to /micamedic
   provisioner "shell" {
-    inline = [   
-      "ls -al /tmp",   
+    inline = [      
       "mkdir /micamedic",
       "mv /tmp /micamedic/"
     ]
