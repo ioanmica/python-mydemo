@@ -33,7 +33,7 @@ steps:
 
 tags: ["cloud-builders-community"]
 
-availableSecrets:
-  secretManager:
-  - versionName: projects/$PROJECT_ID/secrets/packer-build/versions/latest
-    env: 'SSH_KEY' 
+# availableSecrets:
+#   secretManager:
+#   - versionName: projects/$PROJECT_ID/secrets/packer-build/versions/latest
+#     env: 'SSH_KEY' 
